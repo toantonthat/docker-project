@@ -1,0 +1,17 @@
+version: '3.1'
+services: 
+    mysql:
+        build: 
+            dockerfile: Dockerfile
+            context: .
+        image: ${IMAGE_NAME}:${VERSION}
+        container_name: ${CONTAINER_NAME}
+        environment: 
+            - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+            - MYSQL_USER=${MYSQL_USER}
+            - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+            - MYSQL_DATABASE=${MYSQL_DATABASE}
+        volumes: 
+            - my-db:/var/lib/mysql
+        ports: 
+            - "${HOST_ADDRESS}:3306"
